@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnailCorreios - Rastreamento de Pedido</title>
+    <link rel="icon" href="https://i.im.ge/2024/09/17/fv9Mp8.mascote2.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4A90E2, #d0e3f0);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: rgb(255, 255, 255);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #4A90E2;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        .mascote {
+            margin-bottom: 20px;
+        }
+        .mascote img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: calc(100% - 22px);
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .form-group button:hover {
+            background-color: #357ABD;
+            transform: scale(1.05);
+        }
+        #result {
+            margin-top: 20px;
+            color: #333;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="mascote">
+        <a href="https://im.ge/i/mascote2.fv9Mp8">
+            <img src="https://i.im.ge/2024/09/17/fv9Mp8.mascote2.png" alt="Mascote SnailCorreios">
+        </a>
+    </div>
+    <h1>Rastreamento de Pedido</h1>
+    <form id="tracking-form">
+        <div class="form-group">
+            <label for="trackingNumber">Número de Rastreamento</label>
+            <input type="text" id="trackingNumber" name="trackingNumber" placeholder="Digite o número de rastreamento" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Rastrear</button>
+        </div>
+    </form>
+    <div id="result"></div>
+</div>
+<footer>
+    <p>&copy; 2024 SnailCorreios - "Entregas lentas, mas com muito carinho!"</p>
+</footer>
+
+<script>
+    document.getElementById('tracking-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const trackingNumber = document.getElementById('trackingNumber').value;
+
+        fetch(`/api/rastreamento/${trackingNumber}`)
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementBy

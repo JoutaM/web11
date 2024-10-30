@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Rastreamento</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #resultado { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Gerador de Número de Rastreamento</h1>
+    <form id="gerar-form">
+        <label for="pedido-id">ID do Pedido:</label>
+        <input type="number" id="pedido-id" required>
+        <button type="submit">Gerar Rastreamento</button>
+    </form>
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById('gerar-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pedidoId = document.getElementById('pedido-id').value;
+            const rastreamento = gerarNumeroRastreamento(pedidoId);
+            document.getElementById('resultado').innerHTML = `Número de Rastreamento: <strong>${rastreamento}</strong>`;
+        });
+
+        function gerarNumeroRastreamento(pedidoId) {
+            const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let rastreamento = '';
+
+            // Adiciona 2 letras aleatórias
+            for (let i = 0; i < 2; i++) {
+                rastreamento += letras.charAt(Math.floor(Math.random() * letras.length));
+            }
+
+            // Adiciona o ID do pedido
+            rastreamento += pedidoId;
+
+            // Adiciona 2 letras aleatórias
+            for (let i = 0; i < 2; i++) {
+                rastreamento += letras.charAt(Math.floor(Math.random() * letras.length));
+            }
+
+            // Adiciona 4 números aleatórios
+            for (let i = 0; i < 4; i++) {
+                rastreamento += Math.floor(Math.random() * 10);
+            }
+
+            return rastreamento;
+        }
+    </script>
+</body>
+</html>
